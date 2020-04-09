@@ -1,20 +1,28 @@
 package config;
 
 import beans.Cat;
-import beans.Owner;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@ComponentScan(basePackages = "beans")
 public class ProjectConfig {
 
 	@Bean
-	public Cat cat() {
-		return new Cat();
+	@Qualifier("cat1")
+	public Cat cat1() {
+		Cat cat = new Cat();
+		cat.setName("Tom");
+		return cat;
 	}
 
 	@Bean
-	public Owner owner() {
-		return new Owner();
+	@Qualifier("cat2")
+	public Cat cat2() {
+		Cat cat = new Cat();
+		cat.setName("Tommy");
+		return cat;
 	}
 }
